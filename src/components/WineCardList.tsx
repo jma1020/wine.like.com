@@ -16,7 +16,7 @@ export const WineCardList =({name}:WineCardListProps) =>{
 
     return(
         <div>
-            <WineTitle>port Wine</WineTitle>
+            <WineTitle>{name} Wine</WineTitle>
             <main>
                 {data.map((wineData: Wine)=>{
                     return(
@@ -33,5 +33,6 @@ export const WineCardList =({name}:WineCardListProps) =>{
 
 const WineTitle = styled.h1`
     line-height:180%;
-    border-bottom: 1px solid #eee
+    border-bottom: 1px solid #aaa;
+    color:red;
 `
