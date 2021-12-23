@@ -1,6 +1,7 @@
 import { Wine } from "../types/Wine";
 import { Error ,Loading, WineCard } from ".";
 import { useWineData } from "../hooks/useWineData";
+import styled from "@emotion/styled";
 
 interface WineCardListProps{
     name:string
@@ -15,7 +16,7 @@ export const WineCardList =({name}:WineCardListProps) =>{
 
     return(
         <div>
-            <h1>port Wine</h1>
+            <WineTitle>port Wine</WineTitle>
             <main>
                 {data.map((wineData: Wine)=>{
                     return(
@@ -29,3 +30,8 @@ export const WineCardList =({name}:WineCardListProps) =>{
         </div>
     )
 }
+
+const WineTitle = styled.h1`
+    line-height:180%;
+    border-bottom: 1px solid #eee
+`

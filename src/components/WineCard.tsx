@@ -1,3 +1,4 @@
+import styled from "@emotion/styled";
 import { Wine } from "../types/Wine";
 
 interface WineProps {
@@ -8,9 +9,13 @@ export const WineCard = ({wineData} : WineProps) => {
   const { wine, winery } = wineData;
 
   return (
-    <div>
+    <Container>
       <h1>{wine}</h1>
       <p>{winery}</p>
-    </div>
+    </Container>
   )
 }
+
+const Container = styled.div`
+  display:flex;
+`
