@@ -1,4 +1,12 @@
 import Link from "next/link"
+import { ROUTES } from "../../constants"
+
+interface ROUTE {
+    ID: number,
+    PATH: string,
+    LABEL: string,
+    SUBS?: Array<ROUTE>
+}
 
 export const Navigation = () =>{
     return (
@@ -6,60 +14,28 @@ export const Navigation = () =>{
             <h1>Wine and Beers</h1>
             <nav>
                 <ul>
-                    <li>
-                        <Link href='/beers/'>
-                            <a>맥주</a>
-                        </Link>
-                        <ul>
-                            <li>
-                                <Link href='/beers/ale'>
-                                    <a>에일</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href='/beers/stouts'>
-                                    <a>스타우트</a>
-                                </Link>
-                            </li>
-                        </ul>
-                    </li>
-                    <li>
-                        <Link href='/wines/'>
-                            <a>와인</a>
-                        </Link>
-                        <ul>
-                            <li>
-                                <Link href='/wines/port'>
-                                    <a>포트</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href='/wines/rose'>
-                                    <a>rose</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href='/wines/reds'>
-                                    <a>레드</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href='/wines/whites'>
-                                    <a>화이트</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href='/wines/dessert'>
-                                    <a>디저트</a>
-                                </Link>
-                            </li>
-                            <li>
-                                <Link href='/wines/sparkling'>
-                                    <a>스파클링</a>
-                                </Link>
-                            </li>
-                        </ul>
-                    </li>
+                    {
+                        ROUTES.map((routeObject:ROUTE) => {
+                            return(
+                                <li key={`main-menu${routeObject.ID}`}>
+                                    <Link href={routeObject.PATH}>
+                                        <a>{routeObject.LABEL}</a>
+                                    </Link>
+                                    <ul>
+                                        {routeObject.SUBS && routeObject.SUBS.map((subRouteObject: ROUTE) => {
+                                            return(
+                                                <li key={`sub-menu-${subRouteObject.ID}`}>
+                                                    <Link href={`${routeObject.PATH}${subRouteObject.PATH}`}>
+                                                        <a>{subRouteObject.LABEL}</a>
+                                                    </Link>
+                                                </li>
+                                            )
+                                        })}
+                                    </ul>
+                                </li>
+                            )
+                        })
+                    }
                 </ul>
             </nav>
         </header>
